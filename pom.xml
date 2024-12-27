@@ -15,8 +15,8 @@
 
         <!--dependencies-->
         <rest-assured.version>5.5.0</rest-assured.version>
-        <junit-jupiter-api.version>5.7.1</junit-jupiter-api.version>
-        <jackson.version>2.15.2</jackson.version>
+        <junit-jupiter-api.version>5.11.4</junit-jupiter-api.version>
+        <jackson.version>2.18.2</jackson.version>
     </properties>
 
     <dependencies>
@@ -25,11 +25,11 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit-jupiter-api.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -47,6 +47,7 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+
 
     </dependencies>
 
