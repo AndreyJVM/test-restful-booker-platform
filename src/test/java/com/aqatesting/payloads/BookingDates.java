@@ -1,29 +1,27 @@
 package com.aqatesting.payloads;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 public class BookingDates {
 
     @JsonProperty
-    private Date checkin;
+    private LocalDate checkin;
 
     @JsonProperty
-    private Date checkout;
+    private LocalDate checkout;
 
     private BookingDates() {}
 
-    public BookingDates(Date checkin, Date checkout) {
+    public BookingDates(LocalDate checkin, LocalDate checkout) {
         this.checkin = checkin;
         this.checkout = checkout;
     }
 
-    public Date getCheckin() {
+    public LocalDate getCheckin() {
         return checkin;
     }
 
-    public Date getCheckout() {
+    public LocalDate getCheckout() {
         return checkout;
     }
 }

@@ -2,12 +2,11 @@ package com.aqatesting.cheks;
 
 import com.aqatesting.payloads.Booking;
 import com.aqatesting.payloads.BookingDates;
+import com.aqatesting.payloads.BookingResponse;
 import com.aqatesting.requests.BookingApi;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,8 +31,29 @@ public class BookingApiIT {
     @Test
     public void postBookingReturn201() {
         BookingDates dates = new BookingDates(
-                new Date(2021, Calendar.JANUARY, 1),
-                new Date(2021, Calendar.JANUARY, 3)
+                LocalDate.of(2021, 1, 1),
+                LocalDate.of(2021, 1, 3)
+        );
+
+        Booking plyload = new Booking(
+                17,
+                "Mark",
+                "Winteringham",
+                true,
+                dates,
+                "Breakfast"
+        );
+
+        Response response = BookingApi.postBooking(plyload);
+
+        assertEquals(201, response.getStatusCode());
+    }
+
+    @Test
+    public void deleteBookingReturns202() {
+        BookingDates dates = new BookingDates(
+                LocalDate.of(2021, 1, 1),
+                LocalDate.of(2021, 1, 3)
         );
 
         Booking plyload = new Booking(
@@ -45,8 +65,7 @@ public class BookingApiIT {
                 "Breakfast"
         );
 
-        Response response = BookingApi.postBooking(plyload);
-
-        assertEquals(201, response.getStatusCode());
+        Response bookingResponse = BookingApi.postBooking(plyload);
+        BookingResponse createBookingResponse = bookingResponse.as(BookingResponse.class);
     }
 }
