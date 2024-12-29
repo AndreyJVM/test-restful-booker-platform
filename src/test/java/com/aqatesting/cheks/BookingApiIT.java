@@ -1,8 +1,10 @@
 package com.aqatesting.cheks;
 
+import com.aqatesting.payloads.Auth;
 import com.aqatesting.payloads.Booking;
 import com.aqatesting.payloads.BookingDates;
 import com.aqatesting.payloads.BookingResponse;
+import com.aqatesting.requests.AuthApi;
 import com.aqatesting.requests.BookingApi;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
@@ -35,7 +37,7 @@ public class BookingApiIT {
         );
 
         Booking plyload = new Booking(
-                17,
+                2,
                 "Mark",
                 "Winteringham",
                 true,
@@ -50,21 +52,15 @@ public class BookingApiIT {
 
     @Test
     public void deleteBookingReturns202() {
-        BookingDates dates = new BookingDates(
-                LocalDate.of(2021, 1, 1),
-                LocalDate.of(2021, 1, 3)
-        );
 
-        Booking plyload = new Booking(
-                1,
-                "Mark",
-                "Winteringham",
-                true,
-                dates,
-                "Breakfast"
-        );
+        Auth auth = new Auth("admin", "password");
+        Response authResponse = AuthApi.postAuth(auth);
+        String authToken = authResponse.getCookie("token");
 
-        Response bookingResponse = BookingApi.postBooking(plyload);
-        BookingResponse createBookingResponse = bookingResponse.as(BookingResponse.class);
+        Response deleteResponse = BookingApi.deleteBooking(
+                2,
+                authToken);
+
+        assertEquals(202, deleteResponse.getStatusCode());
     }
 }

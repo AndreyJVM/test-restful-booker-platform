@@ -4,15 +4,14 @@ import com.aqatesting.payloads.Booking;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-import static com.aqatesting.requests.BaseApi.baseApiUrl;
 import static io.restassured.RestAssured.given;
 
-public class BookingApi {
-    private static final String apiUrl = baseApiUrl + "3000/booking/";
+public class BookingApi extends BaseApi{
+    private static final String API_URL = BASE_API_URL + "3000/booking/";
 
     public static Response getBookingSummary () {
         return given()
-                .get(apiUrl + "summary?roomid=1");
+                .get(API_URL + "summary?roomid=1");
     }
 
     public static Response postBooking(Booking payload) {
@@ -20,6 +19,12 @@ public class BookingApi {
                 .contentType(ContentType.JSON)
                 .body(payload)
                 .when()
-                .post(apiUrl);
+                .post(API_URL);
+    }
+
+    public static Response deleteBooking(int id, String tokenValue) {
+        return given()
+                .header("Cookie", "token=" + tokenValue)
+                .delete(API_URL + Integer.toString(id));
     }
 }

@@ -9,6 +9,7 @@ public class BookingResponse {
     @JsonProperty
     private Booking booking;
 
+
     public int getBookingid() {
         return bookingid;
     }
