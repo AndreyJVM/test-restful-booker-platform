@@ -17,6 +17,7 @@
         <rest-assured.version>5.5.0</rest-assured.version>
         <junit-jupiter-api.version>5.11.4</junit-jupiter-api.version>
         <jackson.version>2.18.2</jackson.version>
+        <cucumber.version>7.20.1</cucumber.version>
 
         <!--plugins-->
         <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
@@ -49,6 +50,18 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
