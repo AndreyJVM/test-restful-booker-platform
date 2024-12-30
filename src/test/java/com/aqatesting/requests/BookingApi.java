@@ -6,10 +6,10 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-public class BookingApi extends BaseApi{
+public class BookingApi extends BaseApi {
     private static final String API_URL = BASE_API_URL + "3000/booking/";
 
-    public static Response getBookingSummary () {
+    public static Response getBookingSummary() {
         return given()
                 .get(API_URL + "summary?roomid=1");
     }
@@ -26,5 +26,10 @@ public class BookingApi extends BaseApi{
         return given()
                 .header("Cookie", "token=" + tokenValue)
                 .delete(API_URL + Integer.toString(id));
+    }
+
+    public static Response getTotal() {
+        return given()
+                .get(API_URL + "report");
     }
 }
